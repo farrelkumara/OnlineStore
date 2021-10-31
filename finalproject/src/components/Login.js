@@ -9,6 +9,18 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const history = useHistory();
 
+  // const [emailLogin, setEmailLogin] = useState("");
+  // const [passLogin, setPassLogin] = useState("");
+
+  // useEffect(() => {
+  //   fetch("https://fakestoreapi.com/users/5")
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setEmailLogin(json.email);
+  //       setPassLogin(json.password);
+  //     });
+  // }, []);
+
   const handleEmailChange = (e) => {
     setEmailError("");
     setEmail(e.target.value);
@@ -46,16 +58,27 @@ const Login = () => {
     }
   };
 
+  const login = (email, password) => {
+    if (email == "derek@gmail.com" && password == "jklg*_56") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleFormSubmit = (e) => {
-    console.log(email, password);
     e.preventDefault();
     emailCheck(email);
-    if (passwordCheck(password)) {
-      // if (passwordCheck(password)) {
+    passwordCheck(password);
+
+    if (login(email, password)) {
       localStorage.setItem("login", "true");
       history.push("/");
       window.location.reload(false);
-      //}
+    } else {
+      if (emailCheck(email) && passwordCheck(password)) {
+        alert("Email / Password Salah!");
+      }
     }
   };
 

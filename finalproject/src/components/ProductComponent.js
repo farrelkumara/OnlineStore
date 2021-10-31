@@ -44,7 +44,6 @@ const ProductComponent = () => {
     );
   });
 
-  console.log(products);
   return <>{renderList}</>;
 };
 
